@@ -886,6 +886,11 @@ class Base(object):
         self._plugins.unload_removed_plugins(self.transaction)
         self._plugins.run_transaction()
 
+        # log post transaction summary
+        output = dnf.cli.output.Output(self, self.conf)
+        msg = output.post_transaction_output(self.transaction)
+        logger.info(msg)
+
         return tid
 
     def _trans_error_summary(self, errstring):

@@ -251,8 +251,6 @@ class BaseCli(dnf.Base):
             trans = None
 
         if trans:
-            msg = self.output.post_transaction_output(trans)
-            logger.info(msg)
             for tsi in trans:
                 if tsi.state == libdnf.transaction.TransactionItemState_ERROR:
                     raise dnf.exceptions.Error(_('Transaction failed'))
